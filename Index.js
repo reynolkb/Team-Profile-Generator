@@ -4,7 +4,6 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const { createTranspilingRequire } = require('@jest/transform');
 
 var allEmployees = [];
 
@@ -210,7 +209,7 @@ const addIntern = () => {
         }
     ])
         .then(data => {
-            const intern = new Intern(data.name, data.id, data.email, data.github);
+            const intern = new Intern(data.name, data.id, data.email, data.school);
             allEmployees.push(intern);
 
             addEmployee();
@@ -218,18 +217,35 @@ const addIntern = () => {
 }
 
 const createPage = () => {
-    generatePage(allEmployees);
-
-    fs.writeFile('./dist/index.html', generatePage, err => {
-        if (err) {
-            reject(err);
-            return;
-        }
-        resolve({
-            ok: true,
-            message: 'File created!'
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist/index.html', generatePage(allEmployees), err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created!'
+            })
         })
-    })
+    });
+};
+
+const copyStyle = () => {
+    return new Promise((resolve, reject) => {
+        fs.copyFile('./src/style.css', './dist/style.css', err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            resolve({
+                ok: true,
+                message: 'Style sheet copied successfully!'
+            });
+        });
+    });
 }
 
 startApplication();
+copyStyle();
