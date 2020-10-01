@@ -1,4 +1,3 @@
-const { off } = require('process');
 const Manager = require('../lib/Manager');
 
 test('creates a manager', () => {

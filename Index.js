@@ -85,7 +85,7 @@ const addEmployee = () => {
             } else if (data.employeeType === 'Intern') {
                 addIntern();
             } else {
-                return createPage();
+                createPage();
             }
         });
 };
@@ -217,35 +217,36 @@ const addIntern = () => {
 }
 
 const createPage = () => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/index.html', generatePage(allEmployees), err => {
-            if (err) {
-                reject(err);
-                return;
-            }
-            resolve({
-                ok: true,
-                message: 'File created!'
-            })
-        })
-    });
+    fs.writeFile('./dist/index.html', generatePage(allEmployees), err => {
+        var obj = {
+            ok: true,
+            message: 'File created!'
+        }
+
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        console.log(obj);
+        copyStyle();
+    })
 };
 
 const copyStyle = () => {
-    return new Promise((resolve, reject) => {
-        fs.copyFile('./src/style.css', './dist/style.css', err => {
-            if (err) {
-                reject(err);
-                return;
-            }
+    fs.copyFile('./src/style.css', './dist/style.css', err => {
+        var obj = {
+            ok: true,
+            message: 'Style sheet copied successfully!'
+        }
 
-            resolve({
-                ok: true,
-                message: 'Style sheet copied successfully!'
-            });
-        });
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        console.log(obj);
     });
 }
 
 startApplication();
-copyStyle();

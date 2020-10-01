@@ -15,7 +15,7 @@ This is a Team Profile generator that generates a HTML file based on the informa
 
 ## Installation
 
-* Navigate to [https://github.com/reynolkb/readme-generator](https://github.com/reynolkb/readme-generator). 
+* Navigate to [https://github.com/reynolkb/team-profile-generator](https://github.com/reynolkb/team-profile-generator). 
 * Click the 'code' button and download the zip file.
 * Unzip the file on your computer.
 
@@ -25,7 +25,7 @@ Once you've downloaded the code open the zipped folder in an IDE.
 
 Then open the terminal, run 'node index' and answer the prompts. The readme will be generated in the dist folder.
 
-Video Walkthrough: [https://drive.google.com/file/d/16zCrLG_gTb40uKOlWnHOAGwPfUYsMfV_/view?usp=sharing](https://drive.google.com/file/d/16zCrLG_gTb40uKOlWnHOAGwPfUYsMfV_/view?usp=sharing)
+Video Walkthrough: [https://drive.google.com/file/d/1fybIDiIlQnrtAJQ0nizfn0DNgovfpkqU/view?usp=sharing](https://drive.google.com/file/d/1fybIDiIlQnrtAJQ0nizfn0DNgovfpkqU/view?usp=sharing)
 
 ![screenshot of application](./screenshot.png)
 
