@@ -1,9 +1,11 @@
+/* header styling */
 header {
     background-color: red;
     color: white;
     text-align: center;
 }
 
+/* card styling for each employee */
 .card-divider {
     background-color: blue;
     color: white;
@@ -14,10 +16,12 @@ header {
     background-color: lightgray;
 }
 
+/* icon styling */
 i {
     margin-right: 10px;
 }
 
+/* bullet point styling */
 li {
     border: solid lightgray;
     padding: 10px;

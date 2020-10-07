@@ -1,3 +1,4 @@
+// global variables
 const fs = require('fs');
 const generatePage = require('./src/page-template');
 const inquirer = require('inquirer');
@@ -7,6 +8,7 @@ const Intern = require('./lib/Intern');
 
 var allEmployees = [];
 
+// prompt for initial manager questions
 const startApplication = () => {
     return inquirer.prompt([
         {
@@ -70,6 +72,7 @@ const startApplication = () => {
         });
 };
 
+// prompt for adding additional employees
 const addEmployee = () => {
     return inquirer.prompt([
         {
@@ -80,16 +83,22 @@ const addEmployee = () => {
         }
     ])
         .then((data) => {
+            // if the user selects engineer then run the engineer function
             if (data.employeeType === 'Engineer') {
                 addEngineer();
-            } else if (data.employeeType === 'Intern') {
+            }
+            // if the user selects intern then run the intern function 
+            else if (data.employeeType === 'Intern') {
                 addIntern();
-            } else {
+            }
+            // else create the page 
+            else {
                 createPage();
             }
         });
 };
 
+// prompt for adding engineer's information
 const addEngineer = () => {
     return inquirer.prompt([
         {
@@ -145,6 +154,7 @@ const addEngineer = () => {
             }
         }
     ])
+        // create a new engineer, push it to the all employees array and ask the user if they want to add another employee
         .then(data => {
             const engineer = new Engineer(data.name, data.id, data.email, data.github);
             allEmployees.push(engineer);
@@ -153,6 +163,7 @@ const addEngineer = () => {
         })
 }
 
+// prompt to add an intern
 const addIntern = () => {
     return inquirer.prompt([
         {
@@ -208,6 +219,7 @@ const addIntern = () => {
             }
         }
     ])
+        // add a new intern, push it to the all employees array and then ask the user if they want to add another employee
         .then(data => {
             const intern = new Intern(data.name, data.id, data.email, data.school);
             allEmployees.push(intern);
@@ -217,6 +229,7 @@ const addIntern = () => {
 }
 
 const createPage = () => {
+    // write file to dist folder using the generatePage function
     fs.writeFile('./dist/index.html', generatePage(allEmployees), err => {
         var obj = {
             ok: true,
@@ -228,12 +241,14 @@ const createPage = () => {
             return;
         }
 
+        // log the obj if true and then run copy style
         console.log(obj);
         copyStyle();
     })
 };
 
 const copyStyle = () => {
+    // copy the style page and add it to the dist folder
     fs.copyFile('./src/style.css', './dist/style.css', err => {
         var obj = {
             ok: true,
@@ -249,4 +264,5 @@ const copyStyle = () => {
     });
 }
 
+// run the initial function
 startApplication();

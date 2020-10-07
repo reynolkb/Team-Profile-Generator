@@ -1,3 +1,4 @@
+// generate the Manager html
 const generateManager = data => {
     var managerArray = data.filter(manager => {
         return manager.getRole() === 'Manager';
@@ -22,11 +23,13 @@ const generateManager = data => {
                 `
 }
 
+// generate the engineer html
 const generateEngineer = data => {
     var engineerArray = data.filter(engineer => {
         return engineer.getRole() === 'Engineer';
     });
 
+    // loop through each engineer in the array and add the html
     var newEngineerArray = engineerArray.map(engineer => {
         return `
                 <div class="cell small-12 large-4 engineer">
@@ -51,11 +54,13 @@ const generateEngineer = data => {
     return newEngineerArray;
 }
 
+// generate the intern html
 const generateIntern = data => {
     var internArray = data.filter(intern => {
         return intern.getRole() === 'Intern';
     });
 
+    // loop through each intern in the array and add the html
     var newInternArray = internArray.map(intern => {
         return `
                 <div class="cell small-12 large-4 engineer">
@@ -80,6 +85,7 @@ const generateIntern = data => {
     return newInternArray;
 }
 
+// generate the entire page html
 const generatePage = data => {
     return `
 <!DOCTYPE html>
